@@ -16,12 +16,14 @@ public class BasicDevice implements Device {
     private OperatingSystem os;
     private final ScreenSize screenSize;
     private final ItemStack fillerMaterial;
+    private Inventory deviceGUI;
 
     public BasicDevice(String name, OperatingSystem os, ScreenSize screenSize, ItemStack fillerMaterial) {
         this.name = name;
         this.os = os;
         this.screenSize = screenSize;
         this.fillerMaterial = fillerMaterial; // This can be null if no filler is wanted
+        constructGUI();
     }
 
     @Override
@@ -46,9 +48,23 @@ public class BasicDevice implements Device {
 
     @Override
     public void open(Player player) {
-        // GUI logic here (Spigot Inventory API)
-        Inventory deviceGUI = Bukkit.createInventory(null, 9 * getScreenSize().getRows(), os.getOSName());
-     // Add filler items if a filler material is provided
+        player.openInventory(deviceGUI);
+    }
+
+    @Override
+    public void runApp(String appName, Player player) {
+        os.launchApp(appName, player);
+    }
+
+	@Override
+	public Inventory getInventory() {
+		// TODO Auto-generated method stub
+		return deviceGUI;
+	}
+	
+	// Creates the gui
+	private void constructGUI() {
+        deviceGUI = Bukkit.createInventory(this, 9 * getScreenSize().getRows(), os.getOSName());
         if (fillerMaterial != null) {
             // Fill the entire GUI with filler items first
             for (int i = 0; i < screenSize.getTotalSize(); i++) {
@@ -65,13 +81,5 @@ public class BasicDevice implements Device {
             deviceGUI.setItem(slot, app.getIcon());
             slot++;
         }
-
-        // Open the GUI for the player
-        player.openInventory(deviceGUI);
-    }
-
-    @Override
-    public void runApp(String appName, Player player) {
-        os.launchApp(appName, player);
     }
 }

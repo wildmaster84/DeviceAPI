@@ -1,5 +1,6 @@
 package me.wild.utils;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -37,19 +38,16 @@ public class Listeners implements Listener {
 	@EventHandler
 	public void onDeviceClick(InventoryClickEvent event) {
 		if (event.getClickedInventory() == null || event.getCurrentItem() == null) return;
-		InventoryView view = event.getView();
-		String title = ChatColor.stripColor(view.getTitle());
-		for (Device device : DeviceMain.getApi().getDevices()) {
-			if (ChatColor.stripColor(device.getOperatingSystem().getOSName()).equalsIgnoreCase(title)) {
-				event.setCancelled(true);
-				for (App app : device.getOperatingSystem().getInstalledApps()) {
-			        if (app.getIcon().isSimilar(event.getCurrentItem())) {
-			            app.launch((Player)event.getWhoClicked());
-			            break;  // Exit once the matching app is found and launched
-			        }
-			    }
-				break;
-			}
+		
+		if (event.getClickedInventory().getHolder() instanceof Device) {
+			Device device = (Device) event.getClickedInventory().getHolder();
+			event.setCancelled(true);
+			for (App app : device.getOperatingSystem().getInstalledApps()) {
+		        if (app.getIcon().isSimilar(event.getCurrentItem())) {
+		            app.launch((Player)event.getWhoClicked());
+		            break;  // Exit once the matching app is found and launched
+		        }
+		    }
 		}
 	}
 }
