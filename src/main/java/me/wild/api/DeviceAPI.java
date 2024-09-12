@@ -24,8 +24,8 @@ public class DeviceAPI {
     }
 
     // Creates an app
-    public App createApp(String appName, String version, ItemStack iconMaterial, Plugin plugin, Consumer<Player> onLaunch) {
-        return new BasicApp(appName, version, iconMaterial, plugin, onLaunch);
+    public App createApp(String appName, String version, ItemStack iconMaterial, Consumer<Player> onLaunch) {
+        return new BasicApp(appName, version, iconMaterial, onLaunch);
     }
     
     // Creates an operating system

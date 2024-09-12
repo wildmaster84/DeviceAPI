@@ -13,9 +13,9 @@ import org.bukkit.Material;
 public class CalculatorApp implements App {
 	private final AppConfigManager configManager;
 	
-	public CalculatorApp(Plugin plugin) {
+	public CalculatorApp() {
         // Each app can have its own config manager
-        this.configManager = new AppConfigManager(plugin, getAppName());
+        this.configManager = new AppConfigManager(getAppName());
     }
 	
     @Override

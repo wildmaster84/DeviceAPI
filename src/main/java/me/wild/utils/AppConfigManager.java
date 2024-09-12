@@ -4,6 +4,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
+import me.wild.DeviceMain;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Set;
@@ -13,10 +15,10 @@ public class AppConfigManager {
     private final FileConfiguration config;
     private final String sanitizedAppName;
 
-    public AppConfigManager(Plugin plugin, String appName) {
+    public AppConfigManager(String appName) {
         // Sanitize the app name to prevent issues with file creation
         this.sanitizedAppName = sanitizeAppName(appName);
-        File appConfigFolder = new File(plugin.getDataFolder(), "apps");
+        File appConfigFolder = new File(DeviceMain.getInstance().getDataFolder(), "apps");
         
         if (!appConfigFolder.exists()) {
             appConfigFolder.mkdirs();

@@ -12,18 +12,16 @@ public class BasicApp implements App {
 	String appName;
 	String version;
 	ItemStack iconMaterial;
-	Plugin plugin;
 	Consumer<Player> onLaunch;
 	
-	public BasicApp(String appName, String version, ItemStack iconMaterial, Plugin plugin, Consumer<Player> onLaunch) {
+	public BasicApp(String appName, String version, ItemStack iconMaterial, Consumer<Player> onLaunch) {
 		this.appName = appName;
 		this.version = version;
 		this.iconMaterial = iconMaterial;
-		this.plugin = plugin;
 		this.onLaunch = onLaunch;
 	}
 
-	private final AppConfigManager configManager = new AppConfigManager(plugin, appName); // Config manager for the app
+	private final AppConfigManager configManager = new AppConfigManager(appName); // Config manager for the app
 	
     @Override
     public String getAppName() {
