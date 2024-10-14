@@ -12,10 +12,15 @@ import org.bukkit.Material;
 
 public class CalculatorApp implements App {
 	private final AppConfigManager configManager;
+	private ItemStack icon;
 	
 	public CalculatorApp() {
         // Each app can have its own config manager
         this.configManager = new AppConfigManager(getAppName());
+        icon = new ItemStack(Material.PAPER);
+    	ItemMeta meta = icon.getItemMeta();
+    	meta.setDisplayName(getAppName() + " v" + getVersion());
+    	icon.setItemMeta(meta);
     }
 	
     @Override
@@ -35,10 +40,6 @@ public class CalculatorApp implements App {
 
     @Override
     public ItemStack getIcon() {
-    	ItemStack icon = new ItemStack(Material.PAPER);
-    	ItemMeta meta = icon.getItemMeta();
-    	meta.setDisplayName(getAppName() + " v" + getVersion());
-    	icon.setItemMeta(meta);
         return icon; // Example material for the app icon
     }
 
@@ -53,5 +54,12 @@ public class CalculatorApp implements App {
     public AppConfigManager getConfigManager() {
         return configManager; // Return the config manager for this app
     }
+
+	@Override
+	public void setIcon(ItemStack item) {
+		// TODO Auto-generated method stub
+		icon = item;
+		
+	}
 }
 

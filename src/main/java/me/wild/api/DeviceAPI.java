@@ -6,7 +6,6 @@ import java.util.function.Consumer;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
 
 import me.wild.objects.App;
 import me.wild.objects.Device;

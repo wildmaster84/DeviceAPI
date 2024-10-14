@@ -8,8 +8,9 @@ import me.wild.utils.AppConfigManager;
 public interface App {
     String getAppName();
     int getAppSlot();
-    String getVersion(); // New method for version
-    ItemStack getIcon(); // New method for icon material
+    String getVersion();
+    ItemStack getIcon();
+    void setIcon(ItemStack item);
     void launch(Player player);
     default AppConfigManager getConfigManager() {
         return null; // Return null by default for apps that don't use config

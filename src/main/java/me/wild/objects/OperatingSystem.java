@@ -9,5 +9,6 @@ public interface OperatingSystem {
     List<App> getInstalledApps();
     App getApp(int slot);
     void installApp(App app);
+    void uninstallApp(App app);
     void launchApp(String appName, Player player);
 }

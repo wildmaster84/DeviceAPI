@@ -44,6 +44,11 @@ public class BasicApp implements App {
     public ItemStack getIcon() {
         return iconMaterial;
     }
+    
+    @Override
+    public void setIcon(ItemStack item) {
+    	iconMaterial = item;
+    }
 
     @Override
     public void launch(Player player) {

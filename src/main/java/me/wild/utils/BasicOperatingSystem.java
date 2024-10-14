@@ -40,6 +40,11 @@ public class BasicOperatingSystem implements OperatingSystem {
     public void installApp(App app) {
         installedApps.add(app);
     }
+    
+    @Override
+    public void uninstallApp(App app) {
+        installedApps.remove(app);
+    }
 
     @Override
     public void launchApp(String appName, Player player) {
