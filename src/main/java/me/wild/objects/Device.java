@@ -9,6 +9,7 @@ import me.wild.utils.DeviceConfigManager;
 
 public interface Device extends InventoryHolder {
     String getName();
+    String getTitle();
     OperatingSystem getOperatingSystem();
     ScreenSize getScreenSize();  // New method for screen size
     ItemStack getFillerMaterial();  // Optional filler material

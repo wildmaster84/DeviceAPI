@@ -13,13 +13,15 @@ import me.wild.objects.ScreenSize;
 
 public class BasicDevice implements Device {
     private String name;
+    private String title;
     private OperatingSystem os;
     private final ScreenSize screenSize;
     private final ItemStack fillerMaterial;
     private Inventory deviceGUI;
 
-    public BasicDevice(String name, OperatingSystem os, ScreenSize screenSize, ItemStack fillerMaterial) {
+    public BasicDevice(String name, String title, OperatingSystem os, ScreenSize screenSize, ItemStack fillerMaterial) {
         this.name = name;
+        this.title = title;
         this.os = os;
         this.screenSize = screenSize;
         this.fillerMaterial = fillerMaterial; // This can be null if no filler is wanted
@@ -29,6 +31,11 @@ public class BasicDevice implements Device {
     @Override
     public String getName() {
         return name;
+    }
+    
+    @Override
+    public String getTitle() {
+        return title;
     }
 
     @Override
@@ -64,7 +71,7 @@ public class BasicDevice implements Device {
 	
 	// Creates the gui
 	private void constructGUI() {
-        deviceGUI = Bukkit.createInventory(this, 9 * getScreenSize().getRows(), os.getOSName());
+        deviceGUI = Bukkit.createInventory(this, 9 * getScreenSize().getRows(), getTitle());
         if (fillerMaterial != null) {
             // Fill the entire GUI with filler items first
             for (int i = 0; i < screenSize.getTotalSize(); i++) {
@@ -73,13 +80,8 @@ public class BasicDevice implements Device {
         }
 
         // Create GUI items for installed apps
-        int slot = 0;
         for (App app : os.getInstalledApps()) {
-            if (slot >= screenSize.getTotalSize()) {
-                break;  // No more room for apps
-            }
-            deviceGUI.setItem(slot, app.getIcon());
-            slot++;
+            deviceGUI.setItem(app.getAppSlot(), app.getIcon());
         }
     }
 }

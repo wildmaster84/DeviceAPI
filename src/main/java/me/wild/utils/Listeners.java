@@ -21,9 +21,9 @@ public class Listeners implements Listener {
 			return;
 		}
 		ArmorStand armorStand = (ArmorStand) event.getRightClicked();
-		if (armorStand.getHelmet() != null) {
+		if (armorStand.getEquipment().getHelmet() != null) {
 			for (Device device : DeviceMain.getApi().getDevices()) {
-				if (ChatColor.stripColor(armorStand.getHelmet().getItemMeta().getDisplayName()).equalsIgnoreCase(device.getName())) {
+				if (ChatColor.stripColor(armorStand.getEquipment().getHelmet().getItemMeta().getDisplayName()).equalsIgnoreCase(device.getName())) {
 					device.open(event.getPlayer());
 					event.setCancelled(true);
 					break;
@@ -40,12 +40,12 @@ public class Listeners implements Listener {
 		if (event.getClickedInventory().getHolder() instanceof Device) {
 			Device device = (Device) event.getClickedInventory().getHolder();
 			event.setCancelled(true);
-			for (App app : device.getOperatingSystem().getInstalledApps()) {
-		        if (app.getIcon().isSimilar(event.getCurrentItem())) {
-		            app.launch((Player)event.getWhoClicked());
-		            break;  // Exit once the matching app is found and launched
-		        }
-		    }
+			
+			App app = device.getOperatingSystem().getApp(event.getSlot());
+			
+			if (app != null) {
+				app.launch((Player)event.getWhoClicked());
+			}
 		}
 	}
 }

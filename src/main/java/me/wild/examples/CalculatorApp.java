@@ -22,6 +22,11 @@ public class CalculatorApp implements App {
     public String getAppName() {
         return "Calculator";
     }
+    
+    @Override
+	public int getAppSlot() {
+		return 9; // GUI slot
+	}
 
     @Override
     public String getVersion() {

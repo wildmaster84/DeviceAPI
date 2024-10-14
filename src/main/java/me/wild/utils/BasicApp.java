@@ -10,12 +10,14 @@ import me.wild.objects.App;
 
 public class BasicApp implements App {
 	String appName;
+	int slot;
 	String version;
 	ItemStack iconMaterial;
 	Consumer<Player> onLaunch;
 	
-	public BasicApp(String appName, String version, ItemStack iconMaterial, Consumer<Player> onLaunch) {
+	public BasicApp(String appName, int slot, String version, ItemStack iconMaterial, Consumer<Player> onLaunch) {
 		this.appName = appName;
+		this.slot = slot;
 		this.version = version;
 		this.iconMaterial = iconMaterial;
 		this.onLaunch = onLaunch;
@@ -27,6 +29,11 @@ public class BasicApp implements App {
     public String getAppName() {
         return appName;
     }
+    
+    @Override
+	public int getAppSlot() {
+		return slot;
+	}
 
     @Override
     public String getVersion() {

@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 public interface OperatingSystem {
     String getOSName();
     List<App> getInstalledApps();
-    List<App> getPlayerInstalledApps(Player player);
+    App getApp(int slot);
     void installApp(App app);
     void launchApp(String appName, Player player);
 }

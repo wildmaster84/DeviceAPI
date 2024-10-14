@@ -12,12 +12,10 @@ import me.wild.objects.OperatingSystem;
 public class BasicOperatingSystem implements OperatingSystem {
     private String osName;
     private List<App> installedApps;
-    private HashMap<Player, List<App>> playerInstalledApps;
 
     public BasicOperatingSystem(String osName) {
         this.osName = osName;
         this.installedApps = new ArrayList<>();
-        this.playerInstalledApps = new HashMap<Player, List<App>>();
     }
 
     @Override
@@ -31,9 +29,12 @@ public class BasicOperatingSystem implements OperatingSystem {
     }
     
     @Override
-    public List<App> getPlayerInstalledApps(Player player) {
-        return playerInstalledApps.get(player);
-    }
+	public App getApp(int slot) {
+    	for (App app : this.installedApps) {
+    		if (app.getAppSlot() == slot) return app;
+    	}
+		return null;
+	}
 
     @Override
     public void installApp(App app) {

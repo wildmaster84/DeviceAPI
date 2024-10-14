@@ -24,8 +24,8 @@ public class DeviceAPI {
     }
 
     // Creates an app
-    public App createApp(String appName, String version, ItemStack iconMaterial, Consumer<Player> onLaunch) {
-        return new BasicApp(appName, version, iconMaterial, onLaunch);
+    public App createApp(String appName, int slot, String version, ItemStack iconMaterial, Consumer<Player> onLaunch) {
+        return new BasicApp(appName, slot, version, iconMaterial, onLaunch);
     }
     
     // Creates an operating system
@@ -34,8 +34,8 @@ public class DeviceAPI {
     }
     
     // Creates a device
-    public Device createDevice(String name, OperatingSystem os, ScreenSize screenSize, ItemStack fillerMaterial) {
-    	Device device = new BasicDevice(name, os, screenSize, fillerMaterial);
+    public Device createDevice(String deviceName, String title, OperatingSystem os, ScreenSize screenSize, ItemStack fillerMaterial) {
+    	Device device = new BasicDevice(deviceName, title, os, screenSize, fillerMaterial);
     	devices.add(device);
         return device;
     }

@@ -7,6 +7,7 @@ import me.wild.utils.AppConfigManager;
 
 public interface App {
     String getAppName();
+    int getAppSlot();
     String getVersion(); // New method for version
     ItemStack getIcon(); // New method for icon material
     void launch(Player player);
