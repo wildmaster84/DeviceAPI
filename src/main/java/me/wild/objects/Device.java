@@ -5,6 +5,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
+import me.wild.utils.DeviceConfigManager;
+
 public interface Device extends InventoryHolder {
     String getName();
     OperatingSystem getOperatingSystem();
@@ -13,4 +15,7 @@ public interface Device extends InventoryHolder {
     void open(Player player);
     void runApp(String appName, Player player);
     Inventory getInventory();
+    default DeviceConfigManager getConfigManager() {
+        return null; // Return null by default for apps that don't use config
+    }
 }
