@@ -37,6 +37,12 @@ public class BasicDevice implements Device {
     public String getTitle() {
         return title;
     }
+    
+    @Override
+    public void setTitle(String newtitle) {
+    	title = newtitle;
+    	constructGUI();
+    }
 
     @Override
     public OperatingSystem getOperatingSystem() {

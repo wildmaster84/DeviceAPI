@@ -26,6 +26,9 @@ public class AppConfigManager {
         
         this.configFile = new File(appConfigFolder, sanitizedAppName + ".yml");
         this.config = YamlConfiguration.loadConfiguration(configFile);
+        if (!this.configFile.exists()) {
+        	saveConfig();
+        }
     }
 
     // Helper method to sanitize the app name for file safety
